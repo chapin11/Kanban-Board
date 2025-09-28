@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="w-[100%] flex row justify-between p-[10px]"><span class="font-bold text-[24px] text-center text-center flex items-center justify-center">Kanban Доска</span>
+        <span class="bg-[lightblue] rounded-xl w-[35px] h-[35px] text-center flex items-center justify-center cursor-pointer modalWindowBtn"><p>✢</p></span>
+        </header>
+
+        <main class="mt-[10px] flex row justify-between">
+            <div class="task-area w-[345px] m-[70px] mt-0">
+                <span class="text-[24px] font-light">Задачи</span>
+                <div class="task-list bg-[grey] h-[550px] min-w-[150px] p-[10px] space-y-[10px] overflow-y-auto">
+                    <!-- <div class="task-1 bg-white h-[100px] mt-[10px] rounded-[8px] p-[5px] overflow-y-auto flex flex-col justify-between">
+                        <div class="">
+                        <p class="text-light text-[18px]">Название задачи</p>
+                        <p class="text-light text-[12px] overflow-hidden text-ellipsis [display:-webkit-box] [-webkit-line-clamp:2] [-webkit-box-orient:vertical]">Описание задачи Описание задачи Описание задачи Описание задачи Описание задачи Описание задачи Описание задачи Описание задачи Описание задачи Описание задачи Описание задачи Описание задачи Описание задачи Описание задачи Описание задачи Описание задачи Описание задачи Описание задачи Описание задачи </p></div>
+                        <p class="flex row justify-between text-light text-[11px] text-[grey]"><span>Время</span> <span>Дата</span></p>
+                    </div> -->
+
+                </div>
+            </div>
+            <div class="process-area w-[345px] m-[70px] mt-0">
+                <span class="text-[24px] font-light whitespace-nowrap">В процессе</span>
+                <div class="process-list bg-[grey] h-[550px] min-w-[150px] p-[10px] space-y-[10px] overflow-y-auto"></div>
+            </div>
+            <div class="completed-area w-[345px] m-[70px] mt-0">
+                <span class="text-[24px] font-light flex justify-between">Выполненное <button class="bg-[grey] rounded-t-md btn-clear">Очистить</button></span> 
+                <div class="completed-list bg-[grey] h-[550px] min-w-[150px] p-[10px] space-y-[10px] overflow-y-auto"></div>
+            </div>
+        </main>
+
+        <div class="taskModal absolute inset-0 flex items-center justify-center hidden">
+    <!-- Затемненный фон с блюром -->
+    <div class="fixed inset-0 bg-black/50 backdrop-blur-[5px]"></div>
+    
+    <!-- Модальное окно без блюра -->
+    <div class="bg-white rounded-lg p-6 w-96 relative z-10">
+        <h2 class="text-xl font-semibold mb-4">Добавить задачу</h2>
+        <form id="taskForm">
+            <input type="hidden" id="taskStatus">
+            <div class="mb-4">
+                <label class="block text-sm font-regular mb-1">Название задачи</label>
+                <input type="text" id="taskTitle" required 
+                       class="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 input-head">
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-regular mb-1">Описание</label>
+                <textarea id="taskDescription" 
+                          class="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 min-h-20 input-body"></textarea>
+            </div>
+            <div class="flex space-x-2">
+                <button type="button" onclick="hideModal()" 
+                        class="flex-1 bg-gray-300 text-gray-700 py-2 rounded-md hover:bg-gray-400 duration-200">
+                    Отмена
+                </button>
+                <button type="submit" onclick="addTask()"
+                        class="flex-1 bg-green-300 text-white py-2 rounded-md hover:bg-green-600 duration-200">
+                    Добавить
+                </button>
+            </div>
+        </form>
+    </div>
+</div>  
+    </div>
+
+    <style>
+  .task-item {
+    cursor: move;
+    transition: transform 0.2s ease;
+  }
+  
+  
+  .drag-over {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+    border: 2px dashed #3b82f6;
+  }
+  
+  .task-list, .process-list, .completed-list {
+    min-height: 100px;
+    transition: background-color 0.3s ease;
+  }
+</style>
+    <script src="app.js"></script>
+</body> 
+</html>
